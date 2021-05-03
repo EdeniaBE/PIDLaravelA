@@ -1,26 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Artist;
 
 use Illuminate\Http\Request;
+use App\Models\Artist;
 
 class ArtistController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $artists = Artist::all();
+        $artists = Artist::all();   //Récupérer les artistes du modèle(table)
         
         return view('artist.index',[
             'artists' => $artists,
             'resource' => 'artistes',
         ]);
-
     }
 
     /**
@@ -57,7 +56,6 @@ class ArtistController extends Controller
         return view('artist.show',[
             'artist' => $artist,
         ]);
-
     }
 
     /**

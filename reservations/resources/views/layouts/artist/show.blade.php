@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <h1>{{ $artist->firstname }} {{ $artist->lastname }}</h1>
-    <nav><a href="{{ route('artist_index') }}">Retour à l'index</a></nav>
    
     <h2>Liste des types</h2>
       <ul>
