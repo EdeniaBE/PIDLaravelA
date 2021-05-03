@@ -5,37 +5,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artist extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['firstname', 'lastname'];
+    protected $fillable = ['role'];
 
-    /**
+   /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'artists';
+    protected $table = 'roles';
 
-    /**
+   /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
     public $timestamps = false;
 
-    /**
-     * Retrieves all types of this $artist.
+    
+     /**
+     * The user's role(s) - relationship.
      */
-    public function types() {
-        return $this->belongsToMany(Type::class);
-        //return $this->hasMany('App\Models\Type');
-      }
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 
 }

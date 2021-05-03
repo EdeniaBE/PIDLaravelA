@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Cashier\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'login',
+        'firstname',
+        'lastname',
+        'langue',
         'email',
         'password',
     ];
@@ -40,4 +44,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     /**
+     * The user's role(s) - relationship.
+     */
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+
+     /**
+     * The User's representation(s) - Relationship.
+     */
+    public function representations()
+    {
+        return $this->belongsToMany('App\Models\Representation');
+    }
 }
