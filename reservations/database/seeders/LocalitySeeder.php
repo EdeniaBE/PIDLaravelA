@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 use App\Models\Locality;
-use Illuminate\Support\Facades\Schema;
 
 class LocalitySeeder extends Seeder
 {
@@ -16,25 +15,22 @@ class LocalitySeeder extends Seeder
      */
     public function run()
     {
-         //Empty the table first
-         Schema::disableForeignKeyConstraints();
-         Type::truncate();
-         Schema::enableForeignKeyConstraints();
+        //Empty the table first
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        Locality::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
         
-         //Define data
+        //Define data
         $localities = [
             ['postal_code'=>'1000','locality'=>'Bruxelles'],
             ['postal_code'=>'1190','locality'=>'Forest'],
             ['postal_code'=>'1180','locality'=>'Uccle'],
             ['postal_code'=>'1030','locality'=>'Schaerbeek'],
+            ['postal_code'=>'1070','locality'=>'Anderlecht'],
          ];
          
          //Insert data in the table
-         foreach ($localities as $data) {
-            DB::table('localities')->insert([
-                'postal_code' => $data['postal_code'],
-                'locality' => $data['locality'],
-            ]);
-        }    
+         DB::table('localities')->insert($localities);
+         
     }
 }

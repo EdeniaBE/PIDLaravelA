@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -13,11 +15,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
         Role::truncate();
-        Schema::enableForeignKeyConstraints();
-
-         //Define data
+       
+        //Define data
         $roles = [
              ['role'=>'admin'],
              ['role'=>'member'],
@@ -25,10 +25,7 @@ class RoleSeeder extends Seeder
 
         ];
          //Insert data in the table
-         foreach ($roles as $data) {
-             DB::table('roles')->insert([
-                 'role' => $data['role'],
-             ]);
-        }
+         DB::table('roles')->insert($roles);
     }
+    
 }

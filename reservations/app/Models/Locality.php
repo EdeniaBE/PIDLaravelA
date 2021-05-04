@@ -9,7 +9,7 @@ class Locality extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['locality'];
+    protected $fillable = ['code_postal', 'locality'];
 
     //protected $table = 'localities';
 
@@ -33,9 +33,10 @@ class Locality extends Model
     /**
      * Get the locations for the locality - Relashionship
      */
-    public function location()
+    public function locations()
     {
-        return $this->hasMany('App\Models\Location');
+        return $this->hasMany(Location::class);
     }
+
 
 }

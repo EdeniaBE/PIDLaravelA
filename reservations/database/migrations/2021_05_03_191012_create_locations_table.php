@@ -15,7 +15,15 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('slug',60)->unique();
+            $table->string('designation',60);
+            $table->string('address',255);
+            $table->foreignId('locality_id');
+            $table->string('website',255)->nullable();
+            $table->string('phone',30)->nullable();
+            
+            $table->foreign('locality_id')->references('id')->on('localities')
+                    ->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
