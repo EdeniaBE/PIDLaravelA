@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\LocalityController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ShowController;
+use App\Http\Controllers\RepresentaionController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BackofficeController;
+
 
 
 /*
@@ -23,16 +32,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     //Artist
 Route::get('/artist', [ArtistController::class, 'index'])->name('artist_index');
 Route::get('/artist/{id}', [ArtistController::class, 'show'])
-	->where('id', '[0-9]+')->name('artist_show');
+->where('id', '[0-9]+')->name('artist_show');
     //Type
 Route::get('/type', [App\Http\Controllers\TypeController::class, 'index'])->name('type');
-Route::get('/type/{id}', [App\Http\Controllers\TypeController::class, 'show'])->name('type_show');
+Route::get('/type/{id}', [App\Http\Controllers\TypeController::class, 'show'])->name('type_show')
+->where('id', '[0-9]+')->name('type_show');
     //Role
 Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role');
-Route::get('/role/{id}', [App\Http\Controllers\RoleController::class, 'show'])->name('role_show');
+Route::get('/role/{id}', [App\Http\Controllers\RoleController::class, 'show'])->name('role_show')
+->where('id', '[0-9]+')->name('role_show');
     //Locality
 Route::get('/locality', [App\Http\Controllers\LocalityController::class, 'index'])->name('locality_index');
-Route::get('/locality/{id}', [App\Http\Controllers\LocalityController::class, 'show'])->name('locality_show');
+Route::get('/locality/{id}', [App\Http\Controllers\LocalityController::class, 'show'])->name('locality_show')
+->where('id', '[0-9]+')->name('locality_show');
     //Location
 Route::get('/location', [App\Http\Controllers\LocationController::class, 'index'])->name('location');
 Route::get('/location/{id}', [App\Http\Controllers\LocationController::class, 'show'])->name('location_show');

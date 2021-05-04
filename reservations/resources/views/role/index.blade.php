@@ -1,27 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Liste des artistes')
+@section('title', 'Liste des roles')
 
 @section('content')
-
     <h1>Liste des {{ $resource }}</h1>
+
     <table>
         <thead>
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>Roles</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($artists as $artist)
+        @foreach($roles as $role)
             <tr>
-                <td>{{ $artist->firstname }}</td>
                 <td>
-                    <a href="{{ route('artist_show', $artist->id) }}">{{ $artist->lastname }}</a>
+                    <a href="{{ route('role_show', $role->id) }}">{{ $role->role }}</a>
                 </td>
-                
             </tr>
         @endforeach
         </tbody>
     </table>
 @endsection
+
