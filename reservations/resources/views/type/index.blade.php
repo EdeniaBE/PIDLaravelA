@@ -1,15 +1,23 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('title', 'Liste des types d’artistes')
+    <x-slot name="header">
+        <h1> Liste des {{$resource}} </h1>
+    </x-slot>
 
-@section('content')
-    <h1>Liste des {{ $resource }}</h1>
-
-    <ul>
-    @foreach($types as $type)
-        <li><a href="{{ route('type_show', $type->id) }}">{{ $type->type}}</a></li>
-    @endforeach
-    </ul>
-@endsection
-
-
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($types as $type)
+                <tr>
+                    <td>
+                        <a class="hover:text-blue-600" href="{{ route('type_show', $type->id)}}">{{$type->type }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</x-app-layout>

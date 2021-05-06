@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use App\Models\Type;
-use App\Models\Artist;
 
 class TypeSeeder extends Seeder
 {
@@ -16,18 +15,15 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-                //Empty the table first
-                Type::truncate();
-        
-                //Define data
-               $types = [
-                    ['type'=>'comédien'],
-                    ['type'=>'scénographe'],
-                    ['type'=>'auteur'],
-                ];
-                
-                //Insert data in the table
-                DB::table('types')->insert($types);
-        
+
+        DB::table('types')->truncate();
+
+        $types = [
+            ['type'=>'comédien'],
+            ['type'=>'scénographe'],
+            ['type'=>'auteur'],
+        ];
+
+        DB::table('types')->insert($types);
     }
 }

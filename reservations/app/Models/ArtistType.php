@@ -14,16 +14,14 @@ class ArtistType extends Model
     ];
 
     protected $table = 'artist_type';
-  
     public $timestamps = false;
-
     
     /**
      * Get the show of the performance (artist in a type of collaboration for a show)
      */
-    public function shows()
+    public function show()
     {
-        return $this->belongsToMany('App\Models\Show');
+        return $this->belongsToMany(Show::class);
     }
 
     /**
@@ -31,7 +29,7 @@ class ArtistType extends Model
      */
     public function artist()
     {
-        return $this->belongsTo('App\Models\Artist');
+        return $this->belongsTo(Artist::class);
     }
     
     /**
@@ -39,7 +37,6 @@ class ArtistType extends Model
      */
     public function type()
     {
-        return $this->belongsTo('App\Models\Type');
+        return $this->belongsTo(Type::class);
     }
-
 }

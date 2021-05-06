@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Type;
+use Illuminate\Http\Request;
+use App\Models\Artist;
 
 class TypeController extends Controller
 {
@@ -15,11 +16,10 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::all();
-        
-        return view('type.index',[
-            'types' => $types,
-            'resource' => 'types',
-        ]);
+
+        return view('type.index',
+            ['types' => $types, 
+            'resource' => 'types']);
     }
 
     /**
@@ -52,10 +52,11 @@ class TypeController extends Controller
     public function show($id)
     {
         $type = Type::find($id);
-        
+
         return view('type.show',[
             'type' => $type,
         ]);
+        //
     }
 
     /**

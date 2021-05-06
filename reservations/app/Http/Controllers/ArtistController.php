@@ -7,19 +7,18 @@ use App\Models\Artist;
 
 class ArtistController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $artists = Artist::all();   //Récupérer les artistes du modèle(table)
+        $artists=Artist::All();
         
-        return view('artist.index',[
-            'artists' => $artists,
-            'resource' => 'artistes',
-        ]);
+        return view('artist.index',
+                    ['artists'=> $artists,
+                    'resource'=> 'artistes']);
     }
 
     /**
@@ -52,10 +51,10 @@ class ArtistController extends Controller
     public function show($id)
     {
         $artist = Artist::find($id);
-        
-        return view('artist.show',[
-            'artist' => $artist,
-        ]);
+
+        return view('artist.show', [
+            'artist' => $artist,]);
+        //
     }
 
     /**

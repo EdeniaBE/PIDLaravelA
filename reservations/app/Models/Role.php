@@ -9,7 +9,7 @@ class Role extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -29,14 +29,4 @@ class Role extends Model
      * @var bool
      */
     public $timestamps = false;
-
-    
-     /**
-     * The user's role(s) - relationship.
-     */
-    public function users()
-    {
-        return $this->belongsToMany('App\Models\User');
-    }
-
 }

@@ -1,26 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Liste des localités')
+@section('title', 'Fiche d\'une localité')
 
 @section('content')
+    <h1>{{ $locality->postal_code }} {{ $locality->locality }}</h1>
 
-    <h1>Liste des {{ $resource }}</h1>
+    <ul>
+    @foreach($locality->locations as $location)
+        <li>{{ $location->designation }}</li>
+    @endforeach
+    </ul>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Code postal</th>
-                <th>Localité</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($localities as $locality)
-                <tr>
-                    <td>{{ $locality->postal_code }}</td>
-                    <td><a href="{{ route('locality_show', $locality->id) }}">{{ $locality->locality }}</a></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <nav><a href="{{ route('locality_index') }}">Retour à l'index</a></nav>
 @endsection
-

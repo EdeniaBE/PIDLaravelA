@@ -9,13 +9,14 @@ class Locality extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code_postal', 'locality'];
-
-    //protected $table = 'localities';
-
-    //public $timestamps = false;
-
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['postal_code', 'locality'];
+
+   /**
      * The table associated with the model.
      *
      * @var string
@@ -29,14 +30,12 @@ class Locality extends Model
      */
     public $timestamps = false;
 
-
     /**
-     * Get the locations for the locality - Relashionship
+     * Define the relation with Location
+     *
      */
     public function locations()
     {
         return $this->hasMany(Location::class);
     }
-
-
 }

@@ -1,25 +1,22 @@
-@extends('layouts.app')
-
-@section('title', 'Liste des roles')
-
-@section('content')
-    <h1>Liste des {{ $resource }}</h1>
+<x-app-layout>
+    <x-slot name="header">
+    <h1> Liste des {{$resource}} </h1>
+    </x-slot>
 
     <table>
         <thead>
             <tr>
-                <th>Roles</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($roles as $role)
-            <tr>
-                <td>
-                    <a href="{{ route('role_show', $role->id) }}">{{ $role->role }}</a>
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($roles as $role)
+                <tr>
+                    <td>
+                        <a class="hover:text-blue-600" href="{{ route('role_show', $role->id)}}">{{$role->role }}
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
-@endsection
-
+</x-app-layout>

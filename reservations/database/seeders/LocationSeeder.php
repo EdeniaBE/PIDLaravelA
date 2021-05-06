@@ -21,7 +21,6 @@ class LocationSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Location::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
-        
 
         //Define data
         $locations = [
@@ -58,19 +57,19 @@ class LocationSeeder extends Seeder
                 'phone'=>'+32 (0)2/274.05.10',
             ],
         ];
-        
-        //Prepare the data
+
+        //Insert data in the table
         foreach ($locations as &$data) {
-            //Search the locality for a given postal code
+	       //Recherche de la localité = code postal
             $locality = Locality::firstWhere('postal_code',$data['locality_postal_code']);
             unset($data['locality_postal_code']);
 
             $data['slug'] = Str::slug($data['designation'],'-');
-            $data['locality_id'] = $locality->id; //Reference to localities table
+            $data['locality_id'] = $locality->id;	//Référence à la table
         }
         unset($data);
 
-        //Insert data in the table
         DB::table('locations')->insert($locations);
+
     }
 }

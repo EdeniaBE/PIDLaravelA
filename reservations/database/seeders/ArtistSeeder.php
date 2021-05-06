@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\Artist;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class ArtistSeeder extends Seeder
 {
@@ -16,11 +15,10 @@ class ArtistSeeder extends Seeder
      */
     public function run()
     {
-        //Empty the table first
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Artist::truncate();
-        Schema::enableForeignKeyConstraints();
-        
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
         //Define data
         $artists = [
             ['firstname'=>'Daniel','lastname'=>'Marcelin'],
@@ -37,14 +35,8 @@ class ArtistSeeder extends Seeder
             ['firstname'=>'Pierre','lastname'=>'Wayburn'],
             ['firstname'=>'Gwendoline','lastname'=>'Gauthier'],
         ];
-                
-        //Insert data in the table
-        foreach ($artists as $data) {
-            DB::table('artists')->insert([
-                'firstname' => $data['firstname'],
-                'lastname' => $data['lastname'],
-            ]);
-        }
         
+        //Insert data in the table
+        DB::table('artists')->insert($artists);
     }
 }

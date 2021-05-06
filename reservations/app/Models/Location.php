@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+
         /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +21,6 @@ class Location extends Model
         'locality_id',
         'website',
         'phone',
-        'geolocation',
     ];
 
    /**
@@ -36,32 +36,22 @@ class Location extends Model
      * @var bool
      */
     public $timestamps = false;
-    
+
     /**
-     * Get the locality of the location - relationship
+     * Get the locality of the location
      */
     public function locality()
     {
-        return $this->belongsTo('App\Models\Locality');
+        return $this->belongsTo(Locality::class);
     }
 
-    /**
-     * Get the show of the location - relationship
-     */
     public function shows()
     {
-        //return $this->belongsTo('App\Models\Show');
-        return $this->hasMany('App\Models\Show');
+        return $this->hasMany(Show::class);
     }
 
-
-    /**
-     * Get the representations in this location - relationship
-     */
-    public function representations()
-    {
-        return $this->hasMany('App\Models\Representation');
+    public function representations(){
+        return $this->hasMany(Representation::class);
     }
-
 
 }

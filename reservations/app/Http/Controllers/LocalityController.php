@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Locality;
 
 class LocalityController extends Controller
 {
@@ -56,7 +57,6 @@ class LocalityController extends Controller
             'locality' => $locality,
         ]);
     }
-    
 
     /**
      * Show the form for editing the specified resource.

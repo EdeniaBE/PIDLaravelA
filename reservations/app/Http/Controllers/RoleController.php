@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
+
 
 class RoleController extends Controller
 {
@@ -13,12 +15,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        
-        return view('role.index',[
-            'roles' => $roles,
-            'resource' => 'rôles',
-        ]);
+        //
+        $roles=Role::All();
+
+        return view('role.index',
+            ['roles'=> $roles,
+            'resource'=> 'roles']);
     }
 
     /**
@@ -50,11 +52,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
+        //
         $role = Role::find($id);
-        
-        return view('role.show',[
-            'role' => $role,
-        ]);
+        return view('role.show', ['role' => $role,]);
     }
 
     /**

@@ -22,7 +22,8 @@ class LocalityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'postal_code' => $this->faker->postcode  ,
+            'locality' => $this->faker->city ,
         ];
     }
 }

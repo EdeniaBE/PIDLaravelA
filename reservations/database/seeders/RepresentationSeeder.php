@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Location;
-use App\Models\Show;
 use App\Models\Representation;
+use App\Models\Show;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
-class RepresentationsTableSeeder extends Seeder
+class RepresentationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,45 +17,46 @@ class RepresentationsTableSeeder extends Seeder
      */
     public function run()
     {
-        //Empty the table first
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Representation::truncate();
-        Schema::enableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        //Define data
         $representations = [
             [
-                'location_slug'=>'espace-delvaux-la-venerie',
-                'show_slug'=>'ayiti',
+                'location_slug'=>'Espace-Delvaux-La-Vènerie',
+                'show_slug'=>'Ayiyi',
                 'when'=>'2012-10-12 13:30',
             ],
             [
-                'location_slug'=>'dexia-art-center',
-                'show_slug'=>'ayiti',
+                'location_slug'=>'Dexia-Art-Center',
+                'show_slug'=>'Ayiyi',
                 'when'=>'2012-10-12 20:30',
             ],
             [
                 'location_slug'=>null,
-                'show_slug'=>'cible-mouvante',
+                'show_slug'=>'Cible-mouvante',
                 'when'=>'2012-10-02 20:30',
             ],
             [
                 'location_slug'=>null,
-                'show_slug'=>'ceci-nest-pas-un-chanteur-belge',
+                'show_slug'=>'Ceci-nest-pas-un-chanteur-belge',
                 'when'=>'2012-10-16 20:30',
             ],
         ];
 
-        //Insert data in the table
-        foreach ($representations as $data) {
-            $location = Location::firstWhere('slug',$data['location_slug']);
-            $show = Show::firstWhere('slug',$data['show_slug']);
+        foreach($representations as &$data){
+            $location = Location::firstWhere('slug', $data['location_slug']);
+            unset($data['location_slug']);
 
-            DB::table('representations')->insert([
-                'location_id' => $location->id ?? null,
-                'show_id' => $show->id,
-                'when' => $data['when'],
-            ]);
+            $show = Show::firstWhere('slug', $data['show_slug']);
+            unset($data['show_slug']);
+
+            $data['location_id'] = $location->id ?? null;
+            $data['show_id'] = $show->id;
         }
+
+        unset($data);
+
+        DB::table('representations')->insert($representations);
     }
 }

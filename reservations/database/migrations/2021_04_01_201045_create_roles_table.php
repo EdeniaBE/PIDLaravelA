@@ -15,7 +15,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role',60);
+            $table->string('role',30);
         });
     }
 

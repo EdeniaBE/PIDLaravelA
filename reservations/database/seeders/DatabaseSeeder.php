@@ -14,20 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-            ArtistSeeder::class, 
-            TypeSeeder::class, 
-            RoleSeeder::class, 
-            LocalitySeeder::class,
-            LocationSeeder::class, 
-            ShowSeeder::class, 
-            RepresentationSeeder::class, 
-            UserSeeder::class,
-            ArtistTypeSeeder::class, 
-            ArtistTypeShowSeeder::class, 
-            RoleUserSeeder::class, 
-            RepresentationUserSeeder::class,
-        ]);
 
+        $this->call([ArtistSeeder::class,
+                    LocalitySeeder::class,
+                    TypeSeeder::class,
+                    RoleSeeder::class,
+                    LocationSeeder::class,
+                    ShowSeeder::class,
+                    RepresentationSeeder::class,
+                    ArtistTypeSeeder::class,
+                     ArtistTypeShowSeeder::class,
+                    ]);
     }
 }
