@@ -31,6 +31,11 @@ Route::get('/dashboard', function () {
 Route::get('/artist', [ArtistController::class, 'index'])->middleware(['auth'])->name('artist_index');
 Route::get('/artist/{id}', [ArtistController::class, 'show'])
 	->where('id', '[0-9]+')->middleware(['auth'])->name('artist_show');
+Route::get('/artist/edit/{id}', [App\Http\Controllers\ArtistController::class, 'edit'])
+	->where('id', '[0-9]+')->name('artist_edit');
+Route::put('/artist/{id}', [App\Http\Controllers\ArtistController::class, 'update'])
+	->where('id', '[0-9]+')->name('artist_update');
+
 
 Route::get('/type', [TypeController::class, 'index'])->middleware(['auth'])->name('type_index');
 Route::get('/type/{id}', [TypeController::class, 'show'])
