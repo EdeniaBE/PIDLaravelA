@@ -1,17 +1,25 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h1>Liste des {{ $resource }}</h1>
+    </x-slot>
+    <table>
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($artists as $artist)
+            <tr>
+                <td>{{ $artist->firstname }}</td>
+                <td>
+                    <a class="hover:text-blue-600" href="{{ route('artist_show', $artist->id) }}">{{ $artist->lastname }}</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
-@section('title', 'Liste des artistes')
 
-@section('content')
-<h1>{{ $artist->firstname }} {{ $artist->lastname }}</h1>
-    
-    <h2>Liste des types</h2>
-    <ul>
-    @foreach($artist->types as $type)    
-        <li>{{ $type->type }}</li>
-    @endforeach
-    </ul>
-
-    <nav><a href="{{ route('artist_index') }}">Retour à l'index</a></nav>
-
-@endsection
+</x-app-layout>
