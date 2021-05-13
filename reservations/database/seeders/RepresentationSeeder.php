@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Location;
-use App\Models\Representation;
-use App\Models\Show;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Show;
+use App\Models\Location;
+use App\Models\Representation;
 
 class RepresentationSeeder extends Seeder
 {
